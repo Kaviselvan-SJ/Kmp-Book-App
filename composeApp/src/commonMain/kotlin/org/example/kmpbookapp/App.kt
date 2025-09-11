@@ -15,19 +15,30 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import org.jetbrains.compose.resources.painterResource
+
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 import bookapp.composeapp.generated.resources.Res
 import bookapp.composeapp.generated.resources.compose_multiplatform
+import io.ktor.client.engine.HttpClientEngine
+import org.example.kmpbookapp.book.data.network.KtorRemoteBookDataSource
+import org.example.kmpbookapp.book.data.repository.DefaultBookRepository
 import org.example.kmpbookapp.book.presentation.book_list.BookListScreenRoot
 import org.example.kmpbookapp.book.presentation.book_list.BookListViewModel
+import org.example.kmpbookapp.core.data.HttpClientFactory
 
 @Composable
 @Preview
-fun App() {
+fun App(engine: HttpClientEngine) {
     MaterialTheme {
         BookListScreenRoot(
-            viewModel = remember { BookListViewModel() },
+            viewModel = remember { BookListViewModel(
+                bookRepository = DefaultBookRepository(
+                    remoteBookDataSource = KtorRemoteBookDataSource(
+                        httpClient = HttpClientFactory.create(engine)
+                    )
+                )
+            ) },
             onBookClick = {
 
             }
