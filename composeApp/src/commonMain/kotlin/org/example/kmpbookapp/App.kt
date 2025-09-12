@@ -26,19 +26,16 @@ import org.example.kmpbookapp.book.data.repository.DefaultBookRepository
 import org.example.kmpbookapp.book.presentation.book_list.BookListScreenRoot
 import org.example.kmpbookapp.book.presentation.book_list.BookListViewModel
 import org.example.kmpbookapp.core.data.HttpClientFactory
+import org.koin.compose.viewmodel.koinViewModel
+import org.koin.viewmodel.factory.KoinViewModelFactory
 
 @Composable
 @Preview
-fun App(engine: HttpClientEngine) {
+fun App() {
     MaterialTheme {
+        val viewModel = koinViewModel<BookListViewModel>()
         BookListScreenRoot(
-            viewModel = remember { BookListViewModel(
-                bookRepository = DefaultBookRepository(
-                    remoteBookDataSource = KtorRemoteBookDataSource(
-                        httpClient = HttpClientFactory.create(engine)
-                    )
-                )
-            ) },
+            viewModel = viewModel,
             onBookClick = {
 
             }

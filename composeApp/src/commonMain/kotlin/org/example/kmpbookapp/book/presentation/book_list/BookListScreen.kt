@@ -255,7 +255,7 @@ private fun BookListScreen(
 fun BookListScreenPreview() {
     BookListScreen(
         state = BookListState(
-            searchResults = books
+            searchResults = emptyList()
         ),
         onAction = {}
     )
