@@ -5,6 +5,7 @@ import org.example.kmpbookapp.book.data.network.RemoteBookDataSource
 import org.example.kmpbookapp.book.data.repository.DefaultBookRepository
 import org.example.kmpbookapp.book.domain.BookRepository
 import org.example.kmpbookapp.book.presentation.SelectedBookViewModel
+import org.example.kmpbookapp.book.presentation.book_detail.BookDetailViewModel
 import org.example.kmpbookapp.book.presentation.book_list.BookListViewModel
 import org.example.kmpbookapp.core.data.HttpClientFactory
 import org.koin.core.module.Module
@@ -22,5 +23,6 @@ val sharedModule = module {
 
     viewModelOf(::BookListViewModel)
     viewModelOf(::SelectedBookViewModel)
+    viewModelOf(::BookDetailViewModel)
 
 }

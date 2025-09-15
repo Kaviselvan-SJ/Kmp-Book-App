@@ -12,6 +12,9 @@ import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import org.example.kmpbookapp.book.presentation.SelectedBookViewModel
+import org.example.kmpbookapp.book.presentation.book_detail.BookDetailAction
+import org.example.kmpbookapp.book.presentation.book_detail.BookDetailScreenRoot
+import org.example.kmpbookapp.book.presentation.book_detail.BookDetailViewModel
 
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -54,8 +57,21 @@ fun App() {
                     val selectedBookViewModel =
                         it.sharedKoinViewModel<SelectedBookViewModel>(navController)
 
+                    val viewModel = koinViewModel<BookDetailViewModel>()
                     val selectedBook by selectedBookViewModel.selectedBook.collectAsStateWithLifecycle()
 
+                    LaunchedEffect(selectedBook){
+                        selectedBook?.let {
+                            viewModel.onAction(BookDetailAction.OnSelectedBookChange(it))
+                        }
+                    }
+
+                    BookDetailScreenRoot(
+                        viewModel = viewModel,
+                        onBackClick = {
+                            navController.navigateUp()
+                        }
+                    )
                 }
             }
         }
