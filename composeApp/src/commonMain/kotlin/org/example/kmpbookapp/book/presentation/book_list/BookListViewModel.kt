@@ -47,7 +47,7 @@ class BookListViewModel(
     fun onAction(action: BookListAction){
         when(action){
             is BookListAction.OnBookClick -> {
-                TODO()
+
             }
             is BookListAction.OnSearchQueryChange -> {
                 _state.update {
