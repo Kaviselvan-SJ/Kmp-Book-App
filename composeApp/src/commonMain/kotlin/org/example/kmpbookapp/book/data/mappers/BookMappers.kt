@@ -1,5 +1,6 @@
 package org.example.kmpbookapp.book.data.mappers
 
+import org.example.kmpbookapp.book.data.database.BookEntity
 import org.example.kmpbookapp.book.data.dto.SearchedBookDto
 import org.example.kmpbookapp.book.domain.Book
 
@@ -25,7 +26,7 @@ fun SearchedBookDto.toBook(): Book {
 }
 
 
-/*
+
 fun Book.toBookEntity(): BookEntity {
     return BookEntity(
         id = id,
@@ -59,4 +60,3 @@ fun BookEntity.toBook(): Book {
 }
 
 
- */
